@@ -15,7 +15,6 @@ fun Fragment.getViewModelFactory(): ViewModelFactory {
 
 fun AppCompatActivity.getViewModelFactory(): ViewModelFactory {
     return ViewModelFactory(
-        owner = this,
-        intent = intent
+        owner = this
     )
 }
