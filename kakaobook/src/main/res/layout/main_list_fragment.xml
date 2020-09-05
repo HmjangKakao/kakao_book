@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/main_search_hint"
             android:inputType="text"
-            android:text="@={viewModel.searchQueue.query}"
+            android:text="@={viewModel.keyword}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -28,9 +28,21 @@
             app:layout_constraintTop_toBottomOf="@id/et_search_box"
             app:layout_constraintVertical_bias="0.0" />
 
+        <ProgressBar
+            android:id="@+id/pb_searching"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_search_box"
+            android:indeterminate="true"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <data>
+
+        <import type="android.view.View"></import>
 
         <variable
             name="viewModel"

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_main"
+    app:startDestination="@id/mainListFragment">
+
+    <fragment
+        android:id="@+id/mainListFragment"
+        android:name="com.hmjang.kakaobook.ui.main.MainListFragment"
+        android:label="MainListFragment" >
+        <action
+            android:id="@+id/action_mainListFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.hmjang.kakaobook.ui.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="book_item"
+            app:argType="com.hmjang.kakaobook.data.view.BookItemModel" />
+    </fragment>
+</navigation>
