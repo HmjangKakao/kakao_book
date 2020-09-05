@@ -9,6 +9,8 @@
 - todo
 
 ## 외부라이브러리
-- RxJava, RxAndroid 사용
-- Retrofit2 사용
+- [RxJava](https://github.com/ReactiveX/RxJava)
+- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
+- [Retrofit2](https://github.com/square/retrofit)
+- [Glide](https://github.com/bumptech/glide)
  
