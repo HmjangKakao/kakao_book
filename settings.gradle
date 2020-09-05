@@ -1,0 +1,2 @@
+include ':kakaobook'
+rootProject.name='kakao_book'
