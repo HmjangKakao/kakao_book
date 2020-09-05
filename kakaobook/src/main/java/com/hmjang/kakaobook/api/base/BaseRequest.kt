@@ -1,5 +1,6 @@
 package com.hmjang.kakaobook.api.base
 
+import com.google.gson.GsonBuilder
 import okhttp3.Headers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

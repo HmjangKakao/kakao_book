@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.detail.DetailFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{viewModel.item.status.length() > 0 ? color.white : color.darker_gray}"
+        android:padding="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_book_thumbnail"
+            load_image="@{viewModel.item.thumbnail}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintWidth_percent="1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_book_thumbnail">
+
+            <Button
+                android:id="@+id/btn_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_stroke_round_corner"
+                android:onClick="@{onClickDetail}"
+                android:padding="10dp"
+                android:tag="@{viewModel.item.url}"
+                android:text="@string/detail_more_label"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_book_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.item.authors[0]}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_title"
+                tools:text="저자" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_book_publisher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.item.publisher}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_author"
+                app:layout_constraintVertical_bias="0"
+                tools:text="출판사" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_book_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.item.datetime}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_book_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_book_publisher"
+                app:layout_constraintVertical_bias="0"
+                tools:text="출판일" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_book_price"
+                moneyText="@{String.valueOf(viewModel.item.price)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toTopOf="@+id/btn_detail"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="1,000 원" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.item.title}"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="제목" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="android.view.View"></import>
+
+        <import type="android.R.color"></import>
+
+        <variable
+            name="onClickDetail"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.hmjang.kakaobook.ui.detail.DetailFragmentViewModel" />
+    </data>
+
+</layout>

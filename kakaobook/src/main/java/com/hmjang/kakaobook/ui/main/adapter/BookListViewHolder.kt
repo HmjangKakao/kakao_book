@@ -3,10 +3,12 @@ package com.hmjang.kakaobook.ui.main.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.hmjang.kakaobook.R
-import com.hmjang.kakaobook.data.remote.book.BookModel
+import com.hmjang.kakaobook.data.view.BookItemModel
 import com.hmjang.kakaobook.databinding.ItemBookBinding
 
 class BookListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
@@ -14,17 +16,13 @@ class BookListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 ) {
     private val binding = DataBindingUtil.bind<ItemBookBinding>(itemView)!!
 
-    fun onBindViewHolder(item: BookModel) {
+    fun onBindViewHolder(item: BookItemModel) {
         binding.item = item
         itemView.setOnClickListener {
-//            it.findNavController().navigate(
-//                R.id.detailFragment,
-//                bundleOf("model" to item)
-//            )
+            it.findNavController().navigate(
+                R.id.detailFragment,
+                bundleOf("data" to item)
+            )
         }
-    }
-
-    private fun showDetail(context: Context, item: BookModel) {
-
     }
 }

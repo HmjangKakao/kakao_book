@@ -4,4 +4,6 @@
     <string name="main_search_hint">찾고 싶은 책의 정보를 입력해주세요.</string>
 
     <string formatted="false" name="item_book_price">%s 원</string>
+    <string name="detail_more_label">더 상세히 보기</string>
+
 </resources>

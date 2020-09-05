@@ -2,12 +2,12 @@ package com.hmjang.kakaobook.ui.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveDataReactiveStreams
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.hmjang.kakaobook.R
 import com.hmjang.kakaobook.databinding.MainListFragmentBinding
+import com.hmjang.kakaobook.extension.getViewModelFactory
 import com.hmjang.kakaobook.extension.toast
 import com.hmjang.kakaobook.ui.base.BaseBindingFragment
 import com.hmjang.kakaobook.ui.main.adapter.BookListAdapter
@@ -22,7 +22,7 @@ const val BOTTOM = 1
 
 class MainListFragment : BaseBindingFragment<MainListFragmentBinding>(R.layout.main_list_fragment) {
 
-    override val viewModel: MainListViewModel get() = ViewModelProvider(this).get(MainListViewModel::class.java)
+    override val viewModel: MainListViewModel by viewModels { getViewModelFactory() }
 
     companion object {
         fun newInstance() = MainListFragment()

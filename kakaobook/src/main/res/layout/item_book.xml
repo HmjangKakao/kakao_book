@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.hmjang.kakaobook.data.remote.book.BookModel" />
+            type="com.hmjang.kakaobook.data.view.BookItemModel" />
     </data>
 
     <androidx.cardview.widget.CardView

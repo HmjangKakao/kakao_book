@@ -1,5 +1,6 @@
 package com.hmjang.kakaobook.extension
 
+import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -18,9 +19,9 @@ fun ImageView.load(any: Any) {
     Glide.with(this).load(any).into(this)
 }
 
-@BindingAdapter("visibleSwitch")
-fun View.visibleSwitch(visible: Any) {
-    visibility = if (visible == "true") View.VISIBLE else View.GONE
+@BindingAdapter("setColor")
+fun View.setColor(value: Int) {
+    this.setBackgroundColor(value)
 }
 
 private val DECIMAL_FORMAT =
