@@ -28,15 +28,14 @@ jobs:
         with:
             java-version: 1.8
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo 성공적으로 빌드가 될까요?
           echo Good Luck!
+          
+      - name: gradlew permission change
+        run: chmod +x ./gradlew
           
       - name: Build with Gradle
         run: sudo ./gradlew clean assembleDebug
