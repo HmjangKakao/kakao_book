@@ -23,7 +23,7 @@ class BookRequest : BaseRequest<BookApi>() {
             )
             .add(
                 "Authorization",
-                "KakaoAK ${KeyHolder.getApiKey()}")
+                "KakaoAK ${KeyHolder.getOriginalApiKey()}")
             .build()
     }
 
