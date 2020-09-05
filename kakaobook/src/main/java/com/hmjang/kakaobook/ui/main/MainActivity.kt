@@ -1,8 +1,8 @@
-package com.hmjang.kakaobook
+package com.hmjang.kakaobook.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hmjang.kakaobook.ui.main.MainListFragment
+import com.hmjang.kakaobook.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,7 +1,7 @@
-package com.hmjang.kakaobook.data.remote
+package com.hmjang.kakaobook.api.book
 
-import com.google.gson.JsonElement
-import io.reactivex.Flowable
+import com.hmjang.kakaobook.data.remote.book.BookQueryModel
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,6 +12,6 @@ interface BookApi {
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("size") size: Int
-    ): Flowable<JsonElement>
+    ): Single<BookQueryModel>
 
 }

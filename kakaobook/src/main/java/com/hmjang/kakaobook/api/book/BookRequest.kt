@@ -1,15 +1,15 @@
-package com.hmjang.kakaobook.data.remote
+package com.hmjang.kakaobook.api.book
 
-import com.google.gson.JsonElement
 import com.hmjang.kakaobook.KeyHolder
-import com.hmjang.kakaobook.data.SearchQueryData
-import com.hmjang.kakaobook.data.remote.base.BaseRequester
-import io.reactivex.Flowable
+import com.hmjang.kakaobook.data.view.SearchQueryData
+import com.hmjang.kakaobook.api.base.BaseRequest
+import com.hmjang.kakaobook.data.remote.book.BookQueryModel
+import io.reactivex.Single
 import okhttp3.Headers
 
 const val BASE_URL = "https://dapi.kakao.com"
 
-class SearchBookRequest : BaseRequester<BookApi>() {
+class BookRequest : BaseRequest<BookApi>() {
 
     override fun getApiClass() = BookApi::class.java
 
@@ -27,7 +27,7 @@ class SearchBookRequest : BaseRequester<BookApi>() {
             .build()
     }
 
-    fun searchBook(data: SearchQueryData): Flowable<JsonElement> {
+    fun searchBook(data: SearchQueryData): Single<BookQueryModel> {
         return getApi().searchBook(data.query, data.page, data.size)
     }
 

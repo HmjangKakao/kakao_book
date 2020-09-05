@@ -1,4 +1,4 @@
-package com.hmjang.kakaobook.data
+package com.hmjang.kakaobook.data.view
 
 import com.google.gson.annotations.SerializedName
 

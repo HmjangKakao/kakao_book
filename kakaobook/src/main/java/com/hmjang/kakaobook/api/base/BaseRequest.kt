@@ -1,6 +1,5 @@
-package com.hmjang.kakaobook.data.remote.base
+package com.hmjang.kakaobook.api.base
 
-import com.hmjang.kakaobook.KeyHolder
 import okhttp3.Headers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -10,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 const val TIMEOUT_SECONDS = 60L
 
-abstract class BaseRequester<T> {
+abstract class BaseRequest<T> {
 
     protected fun getApi(): T = createRetrofit().create(getApiClass())
 
