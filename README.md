@@ -11,7 +11,8 @@
 - Rest api는 제게 익숙한 retrofit2를 사용하기로 하였습니다.
 - api key는 보안이 필요해서 ndk까지 구현하여 보관하기로 하였습니다. (원문으로 들어가 있었는데 추가로 base64까지만 처리했습니다. :D)
 - MVVM 아키텍트를 사용해서 최대한 View와 ViewModel을 분리하였습니다.
--- ViewModel에는 안드로이드 Native에 종속적인 소스코드를 가능한 넣지 않았습니다.
+- ViewModel에는 안드로이드 Native에 종속적인 소스코드를 가능한 넣지 않았습니다.
+- 화면이동은 Navigation 라이브러리를 사용하였습니다.
 - Rx는 현재 계속 사용해보며 공부중이지만 boilerplate가 상당히 많이 줄고 깔끔해서 사용하였습니다. 
 - RxBinding 라이브러리는 사용하지 않았습니다.
 - DI는 사용하지 않았습니다. (차후 Hilt가 알파에서 정식버전으로 나오면 사용해볼 예정입니다.)
@@ -29,6 +30,7 @@ src
 |   |   |   - ...
 |   - app
 |   |   |   - App.kt
+|   |   |   - ViewModelFactory.kt
 |   - data
 |   |   - local
 |   |   - remote
@@ -37,6 +39,7 @@ src
 |   |   |   |   - ...
 |   |   - view
 |   |   |   - SearchQueryData
+|   |   - Mapper.kt
 |   - extension
 |   |   - BindingExtension.kt
 |   |   - ...
@@ -53,24 +56,27 @@ src
 |   |   |   |   - ...
 |   |   |   - MainListFragment.kt
 |   |   |   - ...
-|   |   - splash
 ```
 ### api
 - Rest api 연결을 위한 Retrofit2, HttpClient의 기본 Class와 카카오북 조회 api
 ### app
-- App DI나 Firebase crashlytics를 사용예정
+- Application과 ViewModel을 생성해주는 ViewModelFactory
 ### data
 - remote : 리모트 data model 정의
 - view : view에서 사용하는 model 정의
-- mapper : model간 data 변환
+- Mapper : model간 data 변환
 ### extension
 - 코틀린 익스텐션을 사용한 유틸들
 ### ui 
 - base : databinding 기본 Class 구현
-- main : main화면
 - detail : 상세화면
+- main : 메인화면
 
 ## 외부라이브러리
+- [androidx.lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- [androidx.navigation](https://developer.android.com/jetpack/androidx/releases/navigation)
+- [androidx.databinding](https://developer.android.com/jetpack/androidx/releases/databinding)
+- [material](https://material.io/develop/android/docs/getting-started)
 - [RxJava](https://github.com/ReactiveX/RxJava)
 - [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 - [Retrofit2](https://github.com/square/retrofit)
