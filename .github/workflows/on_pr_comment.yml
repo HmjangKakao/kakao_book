@@ -1,0 +1,72 @@
+name: on-pr-comment
+
+on:
+  push:
+  pull_request:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+
+jobs:
+  rocket:
+    ## Just to react to valid comment with rocket
+    runs-on: ubuntu-latest
+    if: ${{ github.event.comment &&
+          github.event.issue.pull_request &&
+          startsWith(github.event.comment.body, '/deploy') }}
+    steps:
+      - name: Reaction
+        run: |
+          # send reaction to comment to show build was triggered
+          curl ${{github.event.comment.url}}/reactions \
+            -X POST \
+            -d '{"content":"rocket"}' \
+            -H "Accept: application/vnd.github.squirrel-girl-preview+json" \
+            -H "Authorization: token ${{github.ACTION_TOKEN}}"
+  build:
+    runs-on: ubuntu-latest
+    ## Run on each event, but PR comment is checked for key phrase.
+    if: ${{ github.event_name != 'issue_comment' ||
+            ( github.event.issue.pull_request &&
+            startsWith(github.event.comment.body, '/deploy') ) }}
+    steps:
+      # step_detect_commented_pr
+      - name: REF and SHA of commented PR to ENV
+        if: github.event.comment
+        run: >
+            curl -fsSL ${{github.event.issue.pull_request.url}}
+            -H "Authorization: token ${{github.ACTION_TOKEN}}" |
+            jq -r '
+              "PR_REF="+.head.ref, 
+              "PR_SHA="+.head.sha, 
+              "PR_NUM="+(.number|tostring), 
+              "PR_REPO="+.head.repo.full_name' >>$GITHUB_ENV
+      # step_checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref:        ${{env.PR_REF}}  ## not empty on issue_comment, else default value GITHUB_REF
+          repository: ${{env.PR_REPO}} ## not empty on issue_comment, else default value github.repository, required by forks
+          
+      - name: JDK 1.8 설정
+        uses: actions/setup-java@v1
+        with:
+            java-version: 1.8
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo 성공적으로 빌드가 될까요?
+          echo Good Luck!
+          
+      - name: gradlew permission change
+        run: chmod +x ./gradlew
+          
+      - name: Build with Gradle
+        run: sudo ./gradlew clean assembleDebug
+      
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: kakaobook
+          path: kakaobook/build/outputs/apk/debug
